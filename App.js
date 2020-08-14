@@ -9,17 +9,18 @@ import {
 
 export default class App extends React.Component {
   state = {
-    valorDisplay: '',
+    valorDisplay: 0,
     formula: '',
   };
 
   handleClicked = (valor) => {
     if (valor == 'C') {
-      this.setState({ valorDisplay: '', formula: '' });
+      this.setState({ valorDisplay: 0, formula: '' });
       return;
     }
 
-    var valorReal = isNaN(valor) ? '' : this.state.valorDisplay + valor;
+    var valorReal = isNaN(valor) ? '' : parseInt(valor, 10);
+    this.state.valorDisplay + valor;
 
     this.setState({
       valorDisplay: valorReal,
@@ -28,7 +29,9 @@ export default class App extends React.Component {
 
     if (valor == '=') {
       let total = eval(this.state.formula);
-      this.setState({ valorDisplay: total });
+      this.setState({
+        valorDisplay: total,
+      });
     }
   };
 
